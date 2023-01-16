@@ -9,7 +9,7 @@ const NewTodo = ({toDoStoredData}) => {
       ...enteredToDoData,
       id: Math.random().toString()
     };
-    toDoStoredData(toDoData);
+    toDoStoredData(toDoData)
   }
 
   return (
