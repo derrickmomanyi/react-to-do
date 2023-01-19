@@ -1,12 +1,14 @@
 import React from 'react'
 
 const TodoFilter = (props) => {
+
     const dropdrownChangeHandler = (e) => {
         props.onChangeCategory(e.target.value)
     }
+
   return (
     <div>
-        <select onChange={dropdrownChangeHandler}>
+        <select value={props.selected} onChange={dropdrownChangeHandler}>
             <option value="Work">Work</option>
             <option value="Personal">Personal</option>
             <option value="School">School</option>

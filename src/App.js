@@ -1,45 +1,51 @@
+import {useState} from 'react';
 import './App.css';
 import Card from './components/Todo/Card';
 import TodoList from './components/Todo/TodoList';
 import NewTodo from './components/TodoForm/NewTodo';
+import {Routes, Route} from "react-router-dom";
+import Header from './components/Header';
 
-function App() {
-  const todo = [
-    {
-        id: 1,
-        task : 'Showering',
-        status: 'Complete',
-        date: '12th January 2023',
-        category: 'Personal'
-    },
-    {
-        id: 2,
-        task : 'Do labs',
-        status: 'Incomplete',
-        date: '13th January 2023',
-        category: 'School'
-    },
-    {
-        id: 3,
-        task : 'Upskill',
-        status: 'Complete',
-        date: '15th January 2023',
-        category: 'Personal'
-    },
-
+const todo = [
+  {
+      id: 1,
+      task : 'Showering',
+      status: 'Complete',
+      date: new Date(2021, 5, 12),
+      category: 'Personal'
+  },
+  {
+      id: 2,
+      task : 'Do labs',
+      status: 'Incomplete',
+      date: new Date(2021, 5, 12),
+      category: 'School'
+  },
+  {
+      id: 3,
+      task : 'Upskill',
+      status: 'Complete',
+      date: new Date(2021, 5, 12),
+      category: 'Personal'
+  },
 ]
+function App() {
+  const [todoItems, settodoItems] = useState(todo);
 
-const toDoStoredData = (todoData) => {
-  console.log(todoData);
+  const addtodoItemHandler = (todoitem) => {
+    settodoItems([todoitem, ...todoItems]);
+  };
 
-}
   return (
-
-    
-
     <Card className="app">
-      <NewTodo toDoStoredData={toDoStoredData} />
-      <TodoList data={todo}/>
+      <Header />
+      <Routes>
+        <Route path="/" name="Todo List" element={<TodoList data={todoItems}/>} />
+        <Route path="/create" name="Create New"  element={<NewTodo toDoStoredData={addtodoItemHandler} />} />
+        
+      </Routes>
+      
+      
     </Card>
 
   )
